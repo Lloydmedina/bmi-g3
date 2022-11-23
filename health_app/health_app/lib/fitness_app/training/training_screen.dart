@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:health_app/fitness_app/ui_view/area_list_view.dart';
 import 'package:health_app/fitness_app/ui_view/running_view.dart';
 import 'package:health_app/fitness_app/ui_view/title_view.dart';
@@ -59,18 +61,6 @@ class _TrainingScreenState extends State<TrainingScreen>
     const int count = 5;
 
     listViews.add(
-      TitleView(
-        titleTxt: 'Your program',
-        subTxt: 'Details',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve:
-                Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
-    );
-
-    listViews.add(
       WorkoutView(
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
@@ -79,15 +69,15 @@ class _TrainingScreenState extends State<TrainingScreen>
         animationController: widget.animationController!,
       ),
     );
-    listViews.add(
-      RunningView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve:
-                Interval((1 / count) * 3, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
-    );
+    // listViews.add(
+    //   RunningView(
+    //     animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+    //         parent: widget.animationController!,
+    //         curve:
+    //             Interval((1 / count) * 3, 1.0, curve: Curves.fastOutSlowIn))),
+    //     animationController: widget.animationController!,
+    //   ),
+    // );
 
     listViews.add(
       TitleView(
@@ -101,16 +91,18 @@ class _TrainingScreenState extends State<TrainingScreen>
       ),
     );
 
-    listViews.add(
-      AreaListView(
-        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController!,
-                curve: Interval((1 / count) * 5, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController!,
-      ),
-    );
+    // listViews.add(
+    //   AreaListView(
+    //     mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+    //         CurvedAnimation(
+    //             parent: widget.animationController!,
+    //             curve: Interval((1 / count) * 5, 1.0,
+    //                 curve: Curves.fastOutSlowIn))),
+    //     mainScreenAnimationController: widget.animationController!,
+    //   ),
+    // );
+
+    listViews.add(gridFunc());
   }
 
   Future<bool> getData() async {
@@ -164,6 +156,148 @@ class _TrainingScreenState extends State<TrainingScreen>
     );
   }
 
+  Widget gridFunc() {
+    return SafeArea(
+      child: Container(
+          child: SingleChildScrollView(
+              child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: GridView.count(
+          crossAxisSpacing: 5,
+          mainAxisSpacing: 5,
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          children: <Widget>[
+            //button 1
+            InkWell(
+              child: Container(
+                  width: double.infinity,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0,
+                      )
+                    ],
+                  ),
+                  child: Transform.translate(
+                      offset: Offset(0, 0),
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(
+                          'assets/fitness_app/area1.png',
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ))),
+              onTap: () {
+                Get.toNamed("/running");
+              },
+            ),
+            //button 2
+            InkWell(
+              child: Container(
+                  width: double.infinity,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0,
+                      )
+                    ],
+                  ),
+                  child: Transform.translate(
+                      offset: Offset(0, 0),
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(
+                          'assets/fitness_app/area2.png',
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ))),
+              onTap: () {
+                Get.toNamed("/situp");
+              },
+            ),
+            //button 3
+            InkWell(
+              child: Container(
+                  width: double.infinity,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0,
+                      )
+                    ],
+                  ),
+                  child: Transform.translate(
+                      offset: Offset(0, 0),
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(
+                          'assets/fitness_app/area3.png',
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ))),
+              onTap: () {
+                Get.toNamed("/jumpping");
+              },
+            ),
+            //button 4
+            InkWell(
+              child: Container(
+                  width: double.infinity,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0,
+                      )
+                    ],
+                  ),
+                  child: Transform.translate(
+                      offset: Offset(0, 0),
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(
+                          'assets/fitness_app/area4.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ))),
+              onTap: () {
+                Get.toNamed("/pushup");
+              },
+            ),
+          ],
+        ),
+      ))),
+    );
+  }
+
   Widget getAppBarUI() {
     return Column(
       children: <Widget>[
@@ -207,7 +341,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Training',
+                                  'Exercise',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: FitnessAppTheme.fontName,
@@ -215,67 +349,6 @@ class _TrainingScreenState extends State<TrainingScreen>
                                     fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
                                     color: FitnessAppTheme.darkerText,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 38,
-                              width: 38,
-                              child: InkWell(
-                                highlightColor: Colors.transparent,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(32.0)),
-                                onTap: () {},
-                                child: Center(
-                                  child: Icon(
-                                    Icons.keyboard_arrow_left,
-                                    color: FitnessAppTheme.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 8,
-                                right: 8,
-                              ),
-                              child: Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: FitnessAppTheme.grey,
-                                      size: 18,
-                                    ),
-                                  ),
-                                  Text(
-                                    '15 May',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontFamily: FitnessAppTheme.fontName,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18,
-                                      letterSpacing: -0.2,
-                                      color: FitnessAppTheme.darkerText,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 38,
-                              width: 38,
-                              child: InkWell(
-                                highlightColor: Colors.transparent,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(32.0)),
-                                onTap: () {},
-                                child: Center(
-                                  child: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: FitnessAppTheme.grey,
                                   ),
                                 ),
                               ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:health_app/fitness_app/fitness_app_home_screen.dart';
+import 'package:health_app/fitness_app/training/jumping_screen.dart';
+import 'package:health_app/fitness_app/training/pushup_screen.dart';
+import 'package:health_app/fitness_app/training/running_screen.dart';
+import 'package:health_app/fitness_app/training/situp_screen.dart';
 import 'package:health_app/views/screens/login.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -19,6 +23,22 @@ Future<void> main() async {
       GetPage(
           name: '/home',
           page: () => FitnessAppHomeScreen(),
+          transition: Transition.leftToRight),
+      GetPage(
+          name: '/running',
+          page: () => RunTimer(),
+          transition: Transition.leftToRight),
+      GetPage(
+          name: '/situp',
+          page: () => SitupTimer(),
+          transition: Transition.leftToRight),
+      GetPage(
+          name: '/jumpping',
+          page: () => JumpingTimer(),
+          transition: Transition.leftToRight),
+      GetPage(
+          name: '/pushup',
+          page: () => PushupTimer(),
           transition: Transition.leftToRight),
     ],
   ));
