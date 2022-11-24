@@ -43,16 +43,20 @@ dependencies:
   fl_chart: ^0.55.2
   flutter_ringtone_player: ^3.2.0
   animated_text_kit: ^4.2.2
-  flutter_launcher_icons: ^0.11.0
+  syncfusion_flutter_gauges: ^20.3.58
+  
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: ^0.11.0
+
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
-  image_path: "asset/icons/icon.png"
+  image_path: "assets/icons/icon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

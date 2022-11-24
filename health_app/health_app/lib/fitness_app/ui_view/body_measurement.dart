@@ -1,9 +1,11 @@
+import 'package:flutter/services.dart';
 import 'package:health_app/fitness_app/fitness_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:health_app/main.dart';
 import 'package:health_app/views/components/restext.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'dart:math' as math;
 
 class BodyMeasurementView extends StatefulWidget {
@@ -20,16 +22,24 @@ class BodyMeasurementView extends StatefulWidget {
 
 class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   @override
-  int _currentIntValue = 10;
-  int _currentHieghtValue = 80;
-  int _currentWieightValue = 40;
-  int _currentBMIValue = 10;
+  final _ageCon = new TextEditingController();
+  final _weightCon = new TextEditingController();
+  final _heightCon = new TextEditingController();
+
+  double _currentIntValue = 10;
+  double _currentHieghtValue = 80;
+  double _currentWieightValue = 40;
+  double _currentBMIValue = 10;
   double _hieght = 0.0;
   double _wieght = 0.0;
+  double _bmiresult = 0.0;
   String _bmiRes = '';
   double _bodyfat = 0.0;
   String bmiRes = '';
   String iicon = '';
+  String _age = '';
+  String _gender = 'Male';
+
   bool _visible = false;
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -73,6 +83,79 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                 padding: const EdgeInsets.only(
                                     left: 4, bottom: 8, top: 16),
                                 child: Text(
+                                  'Age :',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: FitnessAppTheme.fontName,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      letterSpacing: -0.1,
+                                      color: FitnessAppTheme.darkText),
+                                ),
+                              ),
+                              Container(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  TextField(
+                                    controller: _ageCon,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: Colors
+                                                .greenAccent), //<-- SEE HERE
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                  ),
+                                ],
+                              )),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 4, bottom: 8, top: 16),
+                                child: Text(
+                                  'Gender :',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: FitnessAppTheme.fontName,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      letterSpacing: -0.1,
+                                      color: FitnessAppTheme.darkText),
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  RadioListTile(
+                                    title: Text("Male"),
+                                    value: "Male",
+                                    groupValue: _gender,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _gender = value.toString();
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile(
+                                    title: Text("Female"),
+                                    value: "Female",
+                                    groupValue: _gender,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _gender = value.toString();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 4, bottom: 8, top: 16),
+                                child: Text(
                                   'Weight (Kilogram)',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -83,48 +166,37 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                       color: FitnessAppTheme.darkText),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              // Weight
+                              Container(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 0, bottom: 0),
-                                        child: NumberPicker(
-                                          value: _currentWieightValue,
-                                          minValue: 10,
-                                          maxValue: 300,
-                                          step: 1,
-                                          itemHeight: 50,
-                                          itemWidth: 95,
-                                          axis: Axis.horizontal,
-                                          onChanged: (value) => setState(() =>
-                                              _currentWieightValue = value),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                                color: Colors.black26),
-                                          ),
-                                        ),
+                                  TextField(
+                                    controller: _weightCon,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: Colors
+                                                .greenAccent), //<-- SEE HERE
                                       ),
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly
                                     ],
                                   ),
                                 ],
-                              ),
+                              )),
                               SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
+
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 4, bottom: 8, top: 16),
                                 child: Text(
-                                  'Hieght (inches)',
+                                  'Hieght (centemeters)',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontFamily: FitnessAppTheme.fontName,
@@ -134,42 +206,30 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                       color: FitnessAppTheme.darkText),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              // Hieght
+                              Container(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 0, bottom: 0),
-                                        child: NumberPicker(
-                                          value: _currentHieghtValue,
-                                          minValue: 10,
-                                          maxValue: 300,
-                                          step: 1,
-                                          itemHeight: 50,
-                                          itemWidth: 95,
-                                          axis: Axis.horizontal,
-                                          onChanged: (value) => setState(() =>
-                                              _currentHieghtValue = value),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                                color: Colors.black26),
-                                          ),
-                                        ),
+                                  TextField(
+                                    controller: _heightCon,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: Colors
+                                                .greenAccent), //<-- SEE HERE
                                       ),
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly
                                     ],
                                   ),
                                 ],
-                              ),
+                              )),
                               SizedBox(
-                                height: 50,
+                                height: 30,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -186,30 +246,41 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                           onPressed: () {
                                             setState(() {
                                               _hieght =
-                                                  _currentHieghtValue * .0254;
-                                              _wieght = _currentWieightValue
-                                                  .toDouble();
-                                              double aa = _hieght * _hieght;
+                                                  double.parse(_heightCon.text);
+                                              _wieght =
+                                                  double.parse(_weightCon.text);
+                                              double aa = (_hieght * _hieght) /
+                                                  _wieght /
+                                                  10000;
                                               print(_hieght);
-                                              double _bmi =
-                                                  _wieght / math.pow(_hieght, 2)
-                                                      as double;
+                                              double _bmi = (_wieght /
+                                                      _hieght /
+                                                      _hieght) *
+                                                  10000 as double;
+
+                                              print(_bmi);
+
                                               // math.
                                               _visible = true;
                                               _bmiRes = _bmi.toStringAsFixed(2);
 
                                               if (_bmi < 18.4) {
                                                 bmiRes = 'Underweight';
+                                                _bmiresult = _bmi;
                                               } else if (_bmi >= 18.5 &&
                                                   _bmi < 25) {
+                                                _bmiresult = _bmi;
                                                 bmiRes = 'Normal';
                                               } else if (_bmi > 25 &&
                                                   _bmi < 30) {
+                                                _bmiresult = _bmi;
                                                 bmiRes = 'Overweight';
                                               } else if (_bmi > 30 &&
                                                   _bmi < 35) {
+                                                _bmiresult = _bmi;
                                                 bmiRes = 'Obese';
                                               } else if (_bmi > 35) {
+                                                _bmiresult = _bmi;
                                                 bmiRes = 'Extremely Obese';
                                               }
                                             });
@@ -282,188 +353,100 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                     ),
                     child: Column(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 16, left: 16, right: 24),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 4, bottom: 8, top: 16),
-                                child: Text(
-                                  'Result!',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: FitnessAppTheme.fontName,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 24,
-                                      letterSpacing: -0.1,
-                                      color: Color.fromARGB(255, 19, 6, 196)),
-                                ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 4, bottom: 8, top: 16),
+                              child: Text(
+                                'Result!',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: FitnessAppTheme.fontName,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 24,
+                                    letterSpacing: -0.1,
+                                    color: Color.fromARGB(255, 19, 6, 196)),
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 16, left: 16, right: 16),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8, right: 8, top: 4),
-                                  child: Column(
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Container(
-                                            height: 48,
-                                            width: 2,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  Colors.red.withOpacity(0.5),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(4.0)),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: <Widget>[
-                                                    // SizedBox(
-                                                    //   width: 28,
-                                                    //   height: 28,
-                                                    // ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 4,
-                                                              bottom: 3),
-                                                      child: Text(
-                                                        '$bmiRes',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          fontFamily:
-                                                              FitnessAppTheme
-                                                                  .fontName,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 18,
-                                                          color: FitnessAppTheme
-                                                              .darkerText,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                        Container(
+                          width: 280,
+                          child: SfRadialGauge(axes: <RadialAxis>[
+                            RadialAxis(
+                              interval: 5,
+                              maximum: 45,
+                              showTicks: false,
+                              canScaleToFit: true,
+                              ranges: <GaugeRange>[
+                                GaugeRange(
+                                  startValue: 0,
+                                  endValue: 18.5,
+                                  color: Color.fromARGB(255, 233, 122, 159),
                                 ),
+                                GaugeRange(
+                                  startValue: 18.5,
+                                  endValue: 25,
+                                  color: Colors.green,
+                                ),
+                                GaugeRange(
+                                  startValue: 25,
+                                  endValue: 30,
+                                  color: Colors.yellowAccent,
+                                ),
+                                GaugeRange(
+                                  startValue: 30,
+                                  endValue: 45,
+                                  color: Colors.redAccent,
+                                )
+                              ],
+                              axisLineStyle: AxisLineStyle(
+                                thickness: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 16),
-                                child: Center(
-                                  child: Stack(
-                                    clipBehavior: Clip.none,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          width: 100,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                            color: FitnessAppTheme.white,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(100.0),
-                                            ),
-                                            border: new Border.all(
-                                                width: 4,
-                                                color: FitnessAppTheme
-                                                    .nearlyDarkBlue
-                                                    .withOpacity(0.2)),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text(
-                                                '$_bmiRes',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      FitnessAppTheme.fontName,
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 24,
-                                                  letterSpacing: 0.0,
-                                                  color: FitnessAppTheme
-                                                      .nearlyDarkBlue,
-                                                ),
-                                              ),
-                                              Text(
-                                                'BMI Score',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      FitnessAppTheme.fontName,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12,
-                                                  letterSpacing: 0.0,
-                                                  color: FitnessAppTheme.grey
-                                                      .withOpacity(0.5),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: CustomPaint(
-                                          painter: CurvePainter(
-                                              colors: [
-                                                FitnessAppTheme.nearlyDarkBlue,
-                                                HexColor("#8A98E8"),
-                                                HexColor("#8A98E8")
-                                              ],
-                                              angle: 140 +
-                                                  (360 - 140) *
-                                                      (1.0 - animation)),
-                                          child: SizedBox(
-                                            width: 108,
-                                            height: 108,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                              pointers: <GaugePointer>[
+                                MarkerPointer(
+                                    value: _bmiresult,
+                                    markerWidth: 20,
+                                    markerHeight: 25,
+                                    markerOffset: -20,
+                                    enableAnimation: true,
+                                    color: Colors.indigo)
+                              ],
+                              annotations: <GaugeAnnotation>[
+                                GaugeAnnotation(
+                                    positionFactor: 0.05,
+                                    widget: Text(
+                                      '$bmiRes',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25),
+                                    )),
+                                GaugeAnnotation(
+                                    positionFactor: 0.70,
+                                    angle: 90,
+                                    widget: Text(
+                                      'BMI Score',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    )),
+                                GaugeAnnotation(
+                                    positionFactor: .90,
+                                    angle: 90,
+                                    widget: Text(
+                                      '[ ' +
+                                          _bmiresult.toStringAsFixed(2) +
+                                          ' ]',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 30),
+                                    ))
+                              ],
+                            ),
+                          ]),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -567,11 +550,9 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
                                       children: <Widget>[
                                         Text(
-                                          '$_bodyfat%',
+                                          _ageCon.text.toString(),
                                           style: TextStyle(
                                             fontFamily:
                                                 FitnessAppTheme.fontName,
@@ -585,7 +566,50 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                           padding:
                                               const EdgeInsets.only(top: 6),
                                           child: Text(
-                                            'Body fat',
+                                            'Age',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  FitnessAppTheme.fontName,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: FitnessAppTheme.grey
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: <Widget>[
+                                        Text(
+                                          '$_gender',
+                                          style: TextStyle(
+                                            fontFamily:
+                                                FitnessAppTheme.fontName,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            letterSpacing: -0.2,
+                                            color: FitnessAppTheme.darkText,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 6),
+                                          child: Text(
+                                            'Gender',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
