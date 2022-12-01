@@ -78,31 +78,6 @@ class _SitupTimerState extends State<SitupTimer> with TickerProviderStateMixin {
             SizedBox(
               height: 30,
             ),
-            SizedBox(
-              height: 65,
-              width: 250.0,
-              child: DefaultTextStyle(
-                style: const TextStyle(
-                    fontSize: 20.0, fontFamily: 'Agne', color: Colors.black),
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                        'Sit-ups can burn fat from 10% up to 30% of fat in a span of 1 month',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Soo ...',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Keep It Up!',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('You Can Do it!',
-                        textAlign: TextAlign.center),
-                  ],
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                ),
-              ),
-            ),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,

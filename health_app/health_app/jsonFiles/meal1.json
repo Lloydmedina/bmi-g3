@@ -1,0 +1,40 @@
+[
+    {
+        "id":0,
+        "category" :1,
+        "name": "Breakfast",
+        "water" : "300-500 ml",
+        
+            "meal1": "3 pcs Egg, Pork or both",
+            "meal2": "Vegetables",
+            "meal3": "Fruits",
+            "training" : "Running (not required)"
+        
+    },
+    {
+        "id":1,
+        "category" :1,
+        "name": "Lunch",
+        "water" : "300-500 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Chicken, Pork or both",
+            "meal3": "Fruits",
+            "training" :""
+        
+        
+    },
+    {
+        "id":2,
+        "category" :1,
+        "name": "Dinner",
+        "water" : "300-500 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fish, Meat or both",
+            "meal3": "Fruits",
+            "training" :""
+            
+        
+    }
+]

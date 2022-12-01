@@ -1,0 +1,194 @@
+[
+    {
+        "id":0,
+        "category" :1,
+        "name": "Breakfast",
+        "water" : "300-500 ml",
+        
+            "meal1": "Egg, Pork or both",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":1,
+        "category" :1,
+        "name": "Lunch",
+        "water" : "300-500 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Chicken, Pork or both",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":2,
+        "category" :1,
+        "name": "Dinner",
+        "water" : "300-500 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fish, Meat or both",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":3,
+        "category" :2,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+        
+            "meal1": "Egg or Pork",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":4,
+        "category" :2,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Chicken or Meat",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":5,
+        "category" :2,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fish",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":6,
+        "category" :3,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+        
+            "meal1": "Egg",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":7,
+        "category" :3,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Chicken (not required)",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":8,
+        "category" :3,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fish (not required)",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":9,
+        "category" :4,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+        
+            "meal1": "Egg (not required)",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":10,
+        "category" :4,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    },
+    {
+        "id":11,
+        "category" :4,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    },
+    {
+        "id":12,
+        "category" :5,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+      
+            "meal1": "Egg (not required)",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":13,
+        "category" :5,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+       
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    },
+    {
+        "id":14,
+        "category" :5,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+      
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    },
+    {
+        "id":15,
+        "category" :6,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+        
+            "meal1": "Egg (not required)",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":16,
+        "category" :6,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    },
+    {
+        "id":17,
+        "category" :6,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    }
+]

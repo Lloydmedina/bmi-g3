@@ -1,0 +1,37 @@
+[
+    {
+        "id":9,
+        "category" :4,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+        
+            "meal1": "1 Egg",
+            "meal2": "Vegetables",
+            "meal3": "Fruits",
+            "training" : "Running - 30 min | daily , Jumping rope 5 min - 10 reps | daily, Sit-ups 2 min 10 reps| daily, Push-ups 1 min 10 reps | daily"
+        
+    },
+    {
+        "id":10,
+        "category" :4,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits",
+            "training" :""
+        
+    },
+    {
+        "id":11,
+        "category" :4,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits",
+            "training" :""
+        
+    }
+    
+]

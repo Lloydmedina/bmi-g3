@@ -79,31 +79,6 @@ class _JumpingTimerState extends State<JumpingTimer>
             SizedBox(
               height: 30,
             ),
-            SizedBox(
-              height: 65,
-              width: 250.0,
-              child: DefaultTextStyle(
-                style: const TextStyle(
-                    fontSize: 20.0, fontFamily: 'Agne', color: Colors.white),
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                        'Jumping rope can burn fat from 15% up to 50% of fat in a span of 1 month',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Soo ...',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Keep Jumping!',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('You Can Do it!',
-                        textAlign: TextAlign.center),
-                  ],
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                ),
-              ),
-            ),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,

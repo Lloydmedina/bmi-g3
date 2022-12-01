@@ -1,0 +1,33 @@
+[
+    {
+        "id":15,
+        "category" :6,
+        "name": "Breakfast",
+        "water" : "100-300 ml",
+        
+            "meal1": "Egg (not required)",
+            "meal2": "Vegetables",
+            "meal3": "Fruits"
+        
+    },
+    {
+        "id":16,
+        "category" :6,
+        "name": "Lunch",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    },
+    {
+        "id":17,
+        "category" :6,
+        "name": "Dinner",
+        "water" : "100-300 ml",
+        
+            "meal1": "Vegetables",
+            "meal2": "Fruits"
+        
+    }
+]

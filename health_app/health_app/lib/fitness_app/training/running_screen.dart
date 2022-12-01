@@ -78,33 +78,6 @@ class _RunTimerState extends State<RunTimer> with TickerProviderStateMixin {
             SizedBox(
               height: 30,
             ),
-            SizedBox(
-              height: 65,
-              width: 250.0,
-              child: DefaultTextStyle(
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'Agne',
-                ),
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                        'Running can burn fat from 10% up to 50% of fat in a span of 1 month',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Soo ...',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Keep Running!',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('You Can Do it!',
-                        textAlign: TextAlign.center),
-                  ],
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                ),
-              ),
-            ),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,

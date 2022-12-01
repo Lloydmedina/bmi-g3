@@ -44,6 +44,10 @@ dependencies:
   flutter_ringtone_player: ^3.2.0
   animated_text_kit: ^4.2.2
   syncfusion_flutter_gauges: ^20.3.58
+  sqflite: ^2.2.0+3
+  path_provider: ^2.0.11
+  syncfusion_flutter_calendar: ^20.3.59
+  provider: ^6.0.4
   
 
 
@@ -78,7 +82,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-        - assets/fitness_app/
+      - assets/fitness_app/
+      - jsonFiles/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

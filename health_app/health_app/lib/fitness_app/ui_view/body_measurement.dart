@@ -1,10 +1,12 @@
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:health_app/fitness_app/fitness_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:health_app/main.dart';
 import 'package:health_app/views/components/restext.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:get/get.dart';
+
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'dart:math' as math;
 
@@ -25,6 +27,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   final _ageCon = new TextEditingController();
   final _weightCon = new TextEditingController();
   final _heightCon = new TextEditingController();
+  final _datas = GetStorage();
 
   double _currentIntValue = 10;
   double _currentHieghtValue = 80;
@@ -41,6 +44,12 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   String _gender = 'Male';
 
   bool _visible = false;
+  bool _vinormal = false;
+  bool _vioverwieght = false;
+  bool _viunderwieght = false;
+  bool _viobese = false;
+  bool _viexisive = false;
+
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: widget.animationController!,
@@ -196,7 +205,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                 padding: const EdgeInsets.only(
                                     left: 4, bottom: 8, top: 16),
                                 child: Text(
-                                  'Hieght (centemeters)',
+                                  'Height (centemeters)',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontFamily: FitnessAppTheme.fontName,
@@ -267,23 +276,45 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                               if (_bmi < 18.4) {
                                                 bmiRes = 'Underweight';
                                                 _bmiresult = _bmi;
+                                                _viunderwieght = true;
                                               } else if (_bmi >= 18.5 &&
                                                   _bmi < 25) {
                                                 _bmiresult = _bmi;
                                                 bmiRes = 'Normal';
+                                                _vinormal = true;
                                               } else if (_bmi > 25 &&
                                                   _bmi < 30) {
                                                 _bmiresult = _bmi;
                                                 bmiRes = 'Overweight';
+                                                _vioverwieght = true;
                                               } else if (_bmi > 30 &&
                                                   _bmi < 35) {
                                                 _bmiresult = _bmi;
                                                 bmiRes = 'Obese';
+                                                _viobese = true;
                                               } else if (_bmi > 35) {
                                                 _bmiresult = _bmi;
                                                 bmiRes = 'Extremely Obese';
+                                                _viexisive = true;
                                               }
                                             });
+                                            FocusScope.of(context).unfocus();
+                                            _datas.write(
+                                              "bmiresult",
+                                              bmiRes,
+                                            );
+                                            _datas.write("bmiscore",
+                                                _bmiresult.toStringAsFixed(2));
+                                            _datas.write("currenthieght",
+                                                _currentHieghtValue.toString());
+                                            _datas.write(
+                                                "currentwieght",
+                                                _currentWieightValue
+                                                    .toString());
+                                            _datas.write("currentage",
+                                                _ageCon.text.toString());
+                                            _datas.write(
+                                                "currentgender", _gender);
                                           },
                                           child: const Text(
                                             'Calculate',
@@ -312,7 +343,10 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                     ),
                   ),
                 ),
-                Visibility(visible: _visible, child: resutl())
+                Visibility(
+                  visible: _visible,
+                  child: resutl(),
+                ),
               ],
             ),
           ),
@@ -471,7 +505,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      '$_currentHieghtValue "',
+                                      '$_currentHieghtValue',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
@@ -510,7 +544,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                           CrossAxisAlignment.center,
                                       children: <Widget>[
                                         Text(
-                                          '$_currentWieightValue kgs',
+                                          '$_currentWieightValue',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily:
@@ -626,6 +660,37 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                   ],
                                 ),
                               )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Row(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Color.fromARGB(
+                                                255, 84, 93, 223),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {});
+                                            Get.toNamed("/recone");
+                                          },
+                                          child: const Text(
+                                            'Show Recommendation',
+                                            style: TextStyle(fontSize: 24),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         )

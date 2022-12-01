@@ -79,31 +79,6 @@ class _PushupTimerState extends State<PushupTimer>
             SizedBox(
               height: 30,
             ),
-            SizedBox(
-              height: 65,
-              width: 250.0,
-              child: DefaultTextStyle(
-                style: const TextStyle(
-                    fontSize: 20.0, fontFamily: 'Agne', color: Colors.white),
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                        'Push-ups can burn fat from 10% up to 45% of fat in a span of 1 month',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Soo ...',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('Push it up!',
-                        textAlign: TextAlign.center),
-                    TypewriterAnimatedText('You Can Do it!',
-                        textAlign: TextAlign.center),
-                  ],
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                ),
-              ),
-            ),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,
