@@ -23,6 +23,7 @@ class RecOne extends GetView<DataController> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color.fromARGB(255, 112, 89, 243),
         appBar: AppBar(
           title: Text('Recommendations'),
         ),
@@ -46,7 +47,13 @@ class RecOne extends GetView<DataController> {
                       // var filter = _data.read("bmiresult");
                       return Column(
                         children: [
-                          Text("Recommended Meals"),
+                          Text(
+                            "Recommended Meals",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.white),
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
@@ -62,7 +69,11 @@ class RecOne extends GetView<DataController> {
                                             children: [
                                               Text(
                                                   items[index].name.toString() +
-                                                      " : "),
+                                                      " : ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16)),
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
@@ -102,7 +113,11 @@ class RecOne extends GetView<DataController> {
                           SizedBox(
                             height: 20,
                           ),
-                          Text("Recommended Water Consumption"),
+                          Text("Recommended Water Consumption",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
@@ -118,7 +133,11 @@ class RecOne extends GetView<DataController> {
                                             children: [
                                               Text(
                                                   items[index].name.toString() +
-                                                      " : "),
+                                                      " : ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16)),
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
@@ -143,12 +162,16 @@ class RecOne extends GetView<DataController> {
                           SizedBox(
                             height: 20,
                           ),
-                          Text("Recommended Training "),
+                          Text("Recommended Training",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: items.length,
+                                itemCount: 1,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     child: Column(
@@ -170,13 +193,23 @@ class RecOne extends GetView<DataController> {
                                   );
                                 }),
                           ),
+                          SizedBox(
+                            height: 20,
+                          ),
                           ElevatedButton(
                               onPressed: () {
                                 setApointment();
 
                                 Get.back();
                               },
-                              child: Text("Save Recommendation?")),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Save Recommendation?",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                        color: Colors.white)),
+                              )),
                           SizedBox(
                             height: 20,
                           )
@@ -209,7 +242,7 @@ Widget infos() {
           elevation: 2,
           child: SizedBox(
               width: 320,
-              height: 100,
+              height: 120,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
@@ -269,17 +302,17 @@ Future<List<MealModel>> ReadJsonData() async {
   var aaaa2 = list[1].toString();
   var aaaa3 = list[2].toString();
   var trim1 = aaaa1.substring(aaaa1.indexOf('Breakfast'), aaaa1.indexOf('}'));
-  // var trim2 = aaaa2.substring(aaaa2.indexOf('Breakfast'), aaaa2.indexOf('}'));
-  // var trim3 = aaaa3.substring(aaaa3.indexOf('Breakfast'), aaaa3.indexOf('}'));
+  var trim2 = aaaa2.substring(aaaa2.indexOf('Lunch'), aaaa2.indexOf('}'));
+  var trim3 = aaaa3.substring(aaaa3.indexOf('Dinner'), aaaa3.indexOf('}'));
 
   //_data.write('recom1', aaaa1);
-  _data.write('recom2', aaaa2);
-  _data.write('recom3', aaaa3);
+  // _data.write('recom2', aaaa2);
+  // _data.write('recom3', aaaa3);
   _data.write('recom1', trim1);
-  // _data.write('recom2', trim2);
-  // _data.write('recom3', trim3);
+  _data.write('recom2', trim2);
+  _data.write('recom3', trim3);
 
-  print(aaaa1.substring(aaaa1.indexOf('Breakfast'), aaaa1.indexOf('}')));
+  print(aaaa2.substring(aaaa2.indexOf('Lunch'), aaaa2.indexOf('}')));
   return list.map((e) => MealModel.fromJson(e)).toList();
 }
 
@@ -287,23 +320,24 @@ List<Appointment> setApointment() {
   List<Appointment> scheduled = <Appointment>[];
   final DateTime starttime = new DateTime.now();
   final DateTime endtime = starttime.add(const Duration(hours: 48));
-  var body = "bmi_result :" +
+  var body = "BMI result :" +
       _data.read('bmiresult') +
-      ",\nbmi_score : " +
+      ",\nBMI score : " +
       _data.read("bmiscore") +
-      ",\nage : " +
+      ",\nAge : " +
       _data.read("currentage") +
-      ",\ngender : " +
+      ",\nGender : " +
       _data.read("currentgender") +
       "\nRecomendation : \n" +
-      "Morning :" +
+      "   Morning :" +
       "" +
-      _data.read("recom1") +
-      "\n Noon :" +
-      _data.read("recom2") +
-      "\n Evening :" +
-      _data.read("recom3") +
+      _data.read("recom1").toString() +
+      "\n   Noon :" +
+      _data.read("recom2").toString() +
+      "\n   Evening :" +
+      _data.read("recom3").toString() +
       "";
+
   scheduled.add(Appointment(
     startTime: starttime,
     endTime: endtime,

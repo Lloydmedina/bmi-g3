@@ -97,15 +97,21 @@ class ProfileView extends StatelessWidget {
                 ),
                 Container(
                   height: 700,
+                  color: Colors.white,
                   child: SfCalendar(
                     dataSource: AgendaDataSource(setApointment()),
+                    appointmentTextStyle: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 5,
+                        fontWeight: FontWeight.bold),
                     showNavigationArrow: true,
                     view: CalendarView.month,
                     initialDisplayDate: DateTime.now(),
                     monthViewSettings: MonthViewSettings(
                         showAgenda: true,
-                        agendaViewHeight: 281,
-                        agendaItemHeight: 280),
+                        agendaViewHeight: 350,
+                        agendaItemHeight: 340),
                   ),
                 )
               ],
