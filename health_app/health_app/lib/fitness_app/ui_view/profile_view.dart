@@ -51,7 +51,7 @@ class ProfileView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'My Profile',
+                            'My Daily',
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontFamily: FitnessAppTheme.fontName,

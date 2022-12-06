@@ -159,11 +159,31 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
         body: Stack(
           children: <Widget>[
             getMainListViewUI(),
-            getAppBarUI(),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
             )
           ],
+        ),
+        appBar: AppBar(
+          elevation: 15,
+          title: Text(
+            "Wellness Everyday",
+            style: TextStyle(color: Colors.black),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.only(bottomRight: Radius.circular(40)),
+                gradient: LinearGradient(
+                    colors: [Colors.white, Color.fromARGB(255, 112, 89, 243)],
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight)),
+          ),
+          backgroundColor: Colors.transparent,
+          leading: Container(
+            width: 100,
+            child: Image.asset("assets/fitness_app/logo.png"),
+          ),
         ),
       ),
     );
