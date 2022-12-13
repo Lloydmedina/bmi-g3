@@ -110,8 +110,8 @@ class ProfileView extends StatelessWidget {
                     initialDisplayDate: DateTime.now(),
                     monthViewSettings: MonthViewSettings(
                         showAgenda: true,
-                        agendaViewHeight: 350,
-                        agendaItemHeight: 340),
+                        agendaViewHeight: 425,
+                        agendaItemHeight: 425),
                   ),
                 )
               ],

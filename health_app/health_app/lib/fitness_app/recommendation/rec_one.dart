@@ -74,32 +74,36 @@ class RecOne extends GetView<DataController> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 16)),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(items[index]
-                                                        .meal1
-                                                        .toString()),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(items[index]
-                                                        .meal2
-                                                        .toString()),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(items[index].meal3 ==
-                                                            null
-                                                        ? " "
-                                                        : items[index]
-                                                            .meal3
-                                                            .toString()),
-                                                  ],
+                                              Container(
+                                                width: 282,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(items[index]
+                                                          .meal1
+                                                          .toString()),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Text(items[index]
+                                                          .meal2
+                                                          .toString()),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Text(items[index].meal3 ==
+                                                              null
+                                                          ? " "
+                                                          : items[index]
+                                                              .meal3
+                                                              .toString()),
+                                                    ],
+                                                  ),
                                                 ),
                                               )
                                             ],

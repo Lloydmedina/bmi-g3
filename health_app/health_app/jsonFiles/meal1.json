@@ -5,9 +5,9 @@
         "name": "Breakfast",
         "water" : "300-500 ml",
         
-            "meal1": "3 pcs Egg, Pork or both",
-            "meal2": "Vegetables",
-            "meal3": "Fruits",
+            "meal1": "3 pcs Egg, 1 Serve of Pork or both",
+            "meal2": "1 Serve of Vegetables(Potatoes, Beans, Corn)",
+            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)",
             "training" : "Running (not required)"
         
     },
@@ -17,9 +17,9 @@
         "name": "Lunch",
         "water" : "300-500 ml",
         
-            "meal1": "Vegetables",
-            "meal2": "Chicken, Pork or both",
-            "meal3": "Fruits",
+            "meal1": "1 Serve of Vegetables(Potatoes, Beans, Corn)",
+            "meal2": "1 Serve of Chicken, Pork or both",
+            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)",
             "training" :""
         
         
@@ -30,9 +30,9 @@
         "name": "Dinner",
         "water" : "300-500 ml",
         
-            "meal1": "Vegetables",
-            "meal2": "Fish, Meat or both",
-            "meal3": "Fruits",
+            "meal1": "1 Serve of Vegetables(Potatoes, Beans, Corn)",
+            "meal2": "1 Serve of Fish, Meat or both",
+            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)",
             "training" :""
             
         

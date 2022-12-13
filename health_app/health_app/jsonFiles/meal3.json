@@ -6,8 +6,8 @@
     "water" : "100-300 ml",
     
         "meal1": "1 Egg",
-        "meal2": "Vegetables",
-        "meal3": "Fruits",
+        "meal2": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
+        "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
         "training" : "Running - 30 min | 1 day interval , Jumping rope 5 min - 6 reps | 1 day interval, Sit-ups 2 min 6 reps| 1 day interval, Push-ups 1 min 6 reps | 1 day interval"
     
 },
@@ -17,9 +17,9 @@
     "name": "Lunch",
     "water" : "100-300 ml",
     
-        "meal1": "Vegetables",
-        "meal2": "Chicken (200 mg)",
-        "meal3": "Fruits",
+        "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
+        "meal2": "1 Serve of Chicken (200 mg)",
+        "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
         "training" :""
     
 },
@@ -29,9 +29,9 @@
     "name": "Dinner",
     "water" : "100-300 ml",
     
-        "meal1": "Vegetables",
-        "meal2": "Fish (100 mg)",
-        "meal3": "Fruits",
+        "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
+        "meal2": "1 Serve of Fish (200 mg)",
+        "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
         "training" :""
     
 }

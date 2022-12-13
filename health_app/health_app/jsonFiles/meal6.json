@@ -5,8 +5,8 @@
         "name": "Breakfast",
         "water" : "100-300 ml",
         
-            "meal1": "Egg (not required)",
-            "meal2": "Vegetables",
+            "meal1": "1 pc Egg (not required)",
+            "meal2": "1 Serve of Vegetables",
             "meal3": "Fruits"
         
     },
@@ -16,7 +16,7 @@
         "name": "Lunch",
         "water" : "100-300 ml",
         
-            "meal1": "Vegetables",
+            "meal1": "1 Serve of Vegetables",
             "meal2": "Fruits"
         
     },
@@ -26,7 +26,7 @@
         "name": "Dinner",
         "water" : "100-300 ml",
         
-            "meal1": "Vegetables",
+            "meal1": "1 Serve of Vegetables",
             "meal2": "Fruits"
         
     }

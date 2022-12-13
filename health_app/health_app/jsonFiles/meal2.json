@@ -6,9 +6,9 @@
         "name": "Breakfast",
         "water" : "100-300 ml",
         
-            "meal1": "1 Egg or Pork",
-            "meal2": "Vegetables",
-            "meal3": "Fruits",
+            "meal1": "1 Egg or 1 Serve of Pork",
+            "meal2": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
             "training" : "Running (To stay fit)"
         
     },
@@ -18,9 +18,9 @@
         "name": "Lunch",
         "water" : "100-300 ml",
         
-            "meal1": "Vegetables",
-            "meal2": "Chicken or Meat",
-            "meal3": "Fruits",
+            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
+            "meal2": "1 Serve of Chicken or Meat",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
             "training" :""
         
     },
@@ -30,9 +30,9 @@
         "name": "Dinner",
         "water" : "100-300 ml",
         
-            "meal1": "Vegetables",
-            "meal2": "Fish",
-            "meal3": "Fruits",
+            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
+            "meal2": "1 Serve of Fish",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
             "training" :""
         
     }
