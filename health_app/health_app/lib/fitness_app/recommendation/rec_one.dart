@@ -75,7 +75,7 @@ class RecOne extends GetView<DataController> {
                                                           FontWeight.bold,
                                                       fontSize: 16)),
                                               Container(
-                                                width: 282,
+                                                width: 269,
                                                 child: Padding(
                                                   padding:
                                                       const EdgeInsets.all(8.0),
@@ -126,38 +126,21 @@ class RecOne extends GetView<DataController> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: items.length,
+                                itemCount: 1,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     child: Column(
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Row(
+                                          child: Column(
                                             children: [
-                                              Text(
-                                                  items[index].name.toString() +
-                                                      " : ",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 16)),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(items[index]
-                                                        .water
-                                                        .toString()),
-                                                  ],
-                                                ),
-                                              )
+                                              Text(items[index]
+                                                  .water
+                                                  .toString()),
                                             ],
                                           ),
-                                        ),
+                                        )
                                       ],
                                     ),
                                   );
