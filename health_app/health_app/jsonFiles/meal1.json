@@ -3,24 +3,24 @@
         "id":0,
         "category" :1,
         "name": "Breakfast",
-        "water" : "1-2 Liters of water per day",
+        "water" : "1-2 Liters of water per day.",
         
-            "meal1": "3 pcs Egg, 1 Serve of Pork or both",
-            "meal2": "1 Serve of Vegetables(Potatoes, Beans, Corn)",
-            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)",
-            "training" : "Running (not required)"
+            "meal1": "3 pcs Egg, 1 Serve of Pork or both.",
+            "meal2": "1 Serve of Vegetables(Potatoes, Beans, Corn).",
+            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples).",
+            "training" : "Running (not required)."
         
     },
     {
         "id":1,
         "category" :1,
         "name": "Lunch",
-        "water" : "",
+  
         
-            "meal1": "1 Serve of Vegetables(Potatoes, Beans, Corn)",
-            "meal2": "1 Serve of Chicken, Pork or both",
-            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)",
-            "training" :""
+            "meal1": "1 Serve of Vegetables(Potatoes, Beans, Corn).",
+            "meal2": "1 Serve of Chicken, Pork or both.",
+            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)."
+        
         
         
     },
@@ -28,12 +28,11 @@
         "id":2,
         "category" :1,
         "name": "Dinner",
-        "water" : "",
         
-            "meal1": "1 Serve of Vegetables(Potatoes, Beans, Corn)",
-            "meal2": "1 Serve of Fish, Meat or both",
-            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)",
-            "training" :""
+            "meal1": "1 Serve of Vegetables(Potatoes, Beans, Corn).",
+            "meal2": "1 Serve of Fish, Meat or both.",
+            "meal3": "Fruits(Bannanas, Mangoes, Avocado, Apples)."
+          
             
         
     }

@@ -126,8 +126,8 @@ class _TProfileScreenState extends State<ProfileScreen>
             padding: EdgeInsets.only(
               top: AppBar().preferredSize.height +
                   MediaQuery.of(context).padding.top +
-                  24,
-              bottom: 62 + MediaQuery.of(context).padding.bottom,
+                  -30,
+              bottom: 70 + MediaQuery.of(context).padding.bottom,
             ),
             itemCount: listViews.length,
             scrollDirection: Axis.vertical,

@@ -4,36 +4,34 @@
         "id":3,
         "category" :2,
         "name": "Breakfast",
-        "water" : "1-2 Liters of water per day",
+        "water" : "1-2 Liters of water per day.",
         
             "meal1": "1 Egg or 1 Serve of Pork",
-            "meal2": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
-            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
-            "training" : "Running (To stay fit)"
+            "meal2": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens).",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple).",
+            "training" : "Running (To stay fit)."
         
     },
     {
         "id":4,
         "category" :2,
         "name": "Lunch",
-        "water" : "",
+    
         
-            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
-            "meal2": "1 Serve of Chicken or Meat",
-            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
-            "training" :""
+            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens).",
+            "meal2": "1 Serve of Chicken or Meat.",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)."
         
     },
     {
         "id":5,
         "category" :2,
         "name": "Dinner",
-        "water" : "",
+     
         
-            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
-            "meal2": "1 Serve of Fish",
-            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
-            "training" :""
+            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens).",
+            "meal2": "1 Serve of Fish.",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)."
         
     }
     

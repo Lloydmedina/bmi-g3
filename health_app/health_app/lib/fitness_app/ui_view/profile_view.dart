@@ -25,7 +25,7 @@ class ProfileView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 16, bottom: 18),
+                      left: 24, right: 24, top: 1, bottom: 18),
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [
@@ -96,7 +96,7 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 700,
+                  height: 1000,
                   color: Colors.white,
                   child: SfCalendar(
                     dataSource: AgendaDataSource(setApointment()),
@@ -109,10 +109,10 @@ class ProfileView extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             appointmentTextStyle: TextStyle(
                               color: Colors.black,
-                              fontSize: 13,
+                              fontSize: 16,
                             )),
-                        agendaViewHeight: 280,
-                        agendaItemHeight: 280),
+                        agendaViewHeight: 650,
+                        agendaItemHeight: 650),
                   ),
                 )
               ],

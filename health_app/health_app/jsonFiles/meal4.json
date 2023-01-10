@@ -3,34 +3,31 @@
         "id":9,
         "category" :4,
         "name": "Breakfast",
-        "water" : "1-2 Liters of water per day",
+        "water" : "1-2 Liters of water per day.",
         
-            "meal1": "1 Egg",
-            "meal2": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
-            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple)",
-            "training" : "Running - 30 min daily , Jumping rope 5 min - 10 repeats daily, Sit-ups 2 min 10 repeats daily, Push-ups 1 min 10 repeats daily"
+            "meal1": "1 Egg.",
+            "meal2": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens).",
+            "meal3": "Fruits(Watermelon, Avocado, Orange, Apple).",
+            "training" : "Running - 30 min daily , Jumping rope 5 min - 10 repeats daily, Sit-ups 2 min 10 repeats daily, Push-ups 1 min 10 repeats daily."
         
     },
     {
         "id":10,
         "category" :4,
         "name": "Lunch",
-        "water" : "",
+  
         
-            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
-            "meal2": "Fruits(Watermelon, Avocado, Orange, Apple)",
-            "training" :""
-        
+            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens).",
+            "meal2": "Fruits(Watermelon, Avocado, Orange, Apple)."
     },
     {
         "id":11,
         "category" :4,
         "name": "Dinner",
-        "water" : "",
+     
         
-            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens)",
-            "meal2": "Fruits(Watermelon, Avocado, Orange, Apple)",
-            "training" :""
+            "meal1": "1 Serve of Vegetables(Cauliflower, Brocolli, Sweet potato, Leafy greens).",
+            "meal2": "Fruits(Watermelon, Avocado, Orange, Apple)."
         
     }
     

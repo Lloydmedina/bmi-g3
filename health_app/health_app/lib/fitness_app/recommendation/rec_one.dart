@@ -315,13 +315,13 @@ List<Appointment> setApointment() {
       _data.read("currentage") +
       ",\nGender : " +
       _data.read("currentgender") +
-      "\nRecomendation : \n" +
-      "   Morning :" +
+      "\nRecomendation : " +
+      "\n" +
       "" +
       _data.read("recom1").toString() +
-      "\n   Noon :" +
+      "\n" +
       _data.read("recom2").toString() +
-      "\n   Evening :" +
+      "\n" +
       _data.read("recom3").toString() +
       "";
 
