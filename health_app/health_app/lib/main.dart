@@ -16,6 +16,7 @@ Future<void> main() async {
   await GetStorage.init();
   final _datas = GetStorage();
   runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
     title: 'Fitness App',
     theme: ThemeData(fontFamily: 'Poppins'),
     getPages: [

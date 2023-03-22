@@ -30,8 +30,8 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   final _datas = GetStorage();
 
   double _currentIntValue = 10;
-  double _currentHieghtValue = 80;
-  double _currentWieightValue = 40;
+  double _currentHieghtValue = 00.0;
+  double _currentWieightValue = 00.0;
   double _currentBMIValue = 10;
   double _hieght = 0.0;
   double _wieght = 0.0;
@@ -42,6 +42,10 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   String iicon = '';
   String _age = '';
   String _gender = 'Male';
+  int _scale = 0;
+  String _scaletxt = '';
+  String _scaletxt2 = '';
+  bool _enabled = false;
 
   bool _visible = false;
   bool _vinormal = false;
@@ -209,22 +213,104 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                     .greenAccent), //<-- SEE HERE
                                           ),
                                         ),
-                                        keyboardType: TextInputType.number,
+                                        keyboardType:
+                                            TextInputType.numberWithOptions(
+                                                decimal: true),
                                         inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.digitsOnly
+                                          FilteringTextInputFormatter.allow(
+                                              RegExp(r'^\d+\.?\d{0,2}')),
                                         ],
                                       ),
                                     ],
                                   )),
                                   SizedBox(
-                                    height: 10,
+                                    height: 20,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Scale",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily:
+                                                FitnessAppTheme.fontName,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            letterSpacing: -0.1,
+                                            color: FitnessAppTheme.darkText),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 333.5,
+                                            height: 60,
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                children: <Widget>[
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  scaleSelect("Meter", 1),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  scaleSelect("Feet", 2),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  scaleSelect("Inches", 3),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  scaleSelect("Centimeter", 4),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5)),
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    Color.fromARGB(
+                                                        255, 234, 173, 245)!,
+                                                    Color.fromARGB(
+                                                        255, 93, 177, 245),
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight),
+                                              boxShadow: <BoxShadow>[
+                                                BoxShadow(
+                                                  color: Colors.grey.shade500,
+                                                  blurRadius: 15.0,
+                                                  spreadRadius: 1.0,
+                                                  offset: Offset(4.0, 4.0),
+                                                ),
+                                                BoxShadow(
+                                                  color: Colors.white,
+                                                  blurRadius: 15.0,
+                                                  spreadRadius: 1.0,
+                                                  offset: Offset(-4.0, -4.0),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
 
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 4, bottom: 8, top: 16),
                                     child: Text(
-                                      'Height (centimeters)',
+                                      _scale == 0
+                                          ? 'Height (Please Select Scale)'
+                                          : 'Height ($_scaletxt)',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: FitnessAppTheme.fontName,
@@ -240,6 +326,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       TextFormField(
+                                        enabled: _enabled,
                                         controller: _heightCon,
                                         validator: (text) {
                                           if (!text!.isNotEmpty) {
@@ -255,9 +342,13 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                     .greenAccent), //<-- SEE HERE
                                           ),
                                         ),
-                                        keyboardType: TextInputType.number,
+                                        keyboardType:
+                                            TextInputType.numberWithOptions(
+                                                decimal: true),
                                         inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.digitsOnly
+                                          FilteringTextInputFormatter.allow(
+                                              RegExp(r'^\d+\.?\d{0,2}')),
+                                          //FilteringTextInputFormatter.digitsOnly
                                         ],
                                       ),
                                     ],
@@ -303,52 +394,174 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                   );
                                                 } else {
                                                   setState(() {
+                                                    _age = _ageCon.text;
                                                     _hieght = double.parse(
                                                         _heightCon.text);
                                                     _wieght = double.parse(
                                                         _weightCon.text);
+                                                    _currentHieghtValue =
+                                                        _hieght;
+                                                    _currentWieightValue =
+                                                        _wieght;
+                                                    if (_scale == 1) {
+                                                      print('meters');
+                                                      _scaletxt2 = 'm';
+                                                      //   double aa =
+                                                      // (_hieght * _hieght) /
+                                                      //     _wieght /
+                                                      //     10000;
 
-                                                    double aa =
-                                                        (_hieght * _hieght) /
-                                                            _wieght /
-                                                            10000;
-                                                    print(_hieght);
-                                                    double _bmi = (_wieght /
-                                                            _hieght /
-                                                            _hieght) *
-                                                        10000 as double;
+                                                      double _bmi = _wieght /
+                                                              (_hieght *
+                                                                  _hieght)
+                                                          as double;
+                                                      print(_bmi);
 
-                                                    print(_bmi);
+                                                      // math.
+                                                      _visible = true;
+                                                      _bmiRes = _bmi
+                                                          .toStringAsFixed(2);
 
-                                                    // math.
-                                                    _visible = true;
-                                                    _bmiRes =
-                                                        _bmi.toStringAsFixed(2);
+                                                      if (_bmi < 18.4) {
+                                                        bmiRes = 'Underweight';
+                                                        _bmiresult = _bmi;
+                                                        _viunderwieght = true;
+                                                      } else if (_bmi >= 18.5 &&
+                                                          _bmi < 25) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Normal';
+                                                        _vinormal = true;
+                                                      } else if (_bmi > 25 &&
+                                                          _bmi < 30) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Overweight';
+                                                        _vioverwieght = true;
+                                                      } else if (_bmi > 30 &&
+                                                          _bmi < 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Obese';
+                                                        _viobese = true;
+                                                      } else if (_bmi > 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes =
+                                                            'Extremely Obese';
+                                                        _viexisive = true;
+                                                      }
+                                                    } else if (_scale == 2) {
+                                                      print('feet');
+                                                      _scaletxt2 = 'ft';
+                                                      double aaa = _hieght /
+                                                          3.280839895 as double;
+                                                      double _bmi = _wieght /
+                                                          (aaa * aaa) as double;
+                                                      print(_bmi);
 
-                                                    if (_bmi < 18.4) {
-                                                      bmiRes = 'Underweight';
-                                                      _bmiresult = _bmi;
-                                                      _viunderwieght = true;
-                                                    } else if (_bmi >= 18.5 &&
-                                                        _bmi < 25) {
-                                                      _bmiresult = _bmi;
-                                                      bmiRes = 'Normal';
-                                                      _vinormal = true;
-                                                    } else if (_bmi > 25 &&
-                                                        _bmi < 30) {
-                                                      _bmiresult = _bmi;
-                                                      bmiRes = 'Overweight';
-                                                      _vioverwieght = true;
-                                                    } else if (_bmi > 30 &&
-                                                        _bmi < 35) {
-                                                      _bmiresult = _bmi;
-                                                      bmiRes = 'Obese';
-                                                      _viobese = true;
-                                                    } else if (_bmi > 35) {
-                                                      _bmiresult = _bmi;
-                                                      bmiRes =
-                                                          'Extremely Obese';
-                                                      _viexisive = true;
+                                                      // math.
+                                                      _visible = true;
+                                                      _bmiRes = _bmi
+                                                          .toStringAsFixed(2);
+
+                                                      if (_bmi < 18.4) {
+                                                        bmiRes = 'Underweight';
+                                                        _bmiresult = _bmi;
+                                                        _viunderwieght = true;
+                                                      } else if (_bmi >= 18.5 &&
+                                                          _bmi < 25) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Normal';
+                                                        _vinormal = true;
+                                                      } else if (_bmi > 25 &&
+                                                          _bmi < 30) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Overweight';
+                                                        _vioverwieght = true;
+                                                      } else if (_bmi > 30 &&
+                                                          _bmi < 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Obese';
+                                                        _viobese = true;
+                                                      } else if (_bmi > 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes =
+                                                            'Extremely Obese';
+                                                        _viexisive = true;
+                                                      }
+                                                    } else if (_scale == 3) {
+                                                      _scaletxt2 = 'in';
+                                                      double aaa = _hieght *
+                                                          0.0254 as double;
+                                                      double _bmi = _wieght /
+                                                          (aaa * aaa) as double;
+                                                      print(_bmi);
+
+                                                      // math.
+                                                      _visible = true;
+                                                      _bmiRes = _bmi
+                                                          .toStringAsFixed(2);
+
+                                                      if (_bmi < 18.4) {
+                                                        bmiRes = 'Underweight';
+                                                        _bmiresult = _bmi;
+                                                        _viunderwieght = true;
+                                                      } else if (_bmi >= 18.5 &&
+                                                          _bmi < 25) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Normal';
+                                                        _vinormal = true;
+                                                      } else if (_bmi > 25 &&
+                                                          _bmi < 30) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Overweight';
+                                                        _vioverwieght = true;
+                                                      } else if (_bmi > 30 &&
+                                                          _bmi < 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Obese';
+                                                        _viobese = true;
+                                                      } else if (_bmi > 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes =
+                                                            'Extremely Obese';
+                                                        _viexisive = true;
+                                                      }
+                                                    } else {
+                                                      _scaletxt2 = 'cm';
+                                                      double aaa = _hieght *
+                                                          0.01 as double;
+                                                      double _bmi = _wieght /
+                                                          (aaa * aaa) as double;
+                                                      print(_bmi);
+
+                                                      // math.
+                                                      _visible = true;
+                                                      _bmiRes = _bmi
+                                                          .toStringAsFixed(2);
+
+                                                      if (_bmi < 18.4) {
+                                                        bmiRes = 'Underweight';
+                                                        _bmiresult = _bmi;
+                                                        _viunderwieght = true;
+                                                      } else if (_bmi >= 18.5 &&
+                                                          _bmi < 25) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Normal';
+                                                        _vinormal = true;
+                                                      } else if (_bmi > 25 &&
+                                                          _bmi < 30) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Overweight';
+                                                        _vioverwieght = true;
+                                                      } else if (_bmi > 30 &&
+                                                          _bmi < 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes = 'Obese';
+                                                        _viobese = true;
+                                                      } else if (_bmi > 35) {
+                                                        _bmiresult = _bmi;
+                                                        bmiRes =
+                                                            'Extremely Obese';
+                                                        _viexisive = true;
+                                                      }
                                                     }
                                                   });
                                                 }
@@ -414,6 +627,29 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
         );
       },
     );
+  }
+
+  Widget scaleSelect(String text, int index) {
+    return OutlinedButton(
+        onPressed: () {
+          setState(() {
+            _scale = index;
+            _scaletxt = text;
+            _enabled = true;
+          });
+        },
+        child: Text(
+          text,
+          style: TextStyle(
+              color: (_scale == index) ? Colors.amber : Colors.blue,
+              fontStyle:
+                  (_scale == index) ? FontStyle.italic : FontStyle.normal),
+        ),
+        style: OutlinedButton.styleFrom(
+            padding: EdgeInsets.all(15),
+            minimumSize: Size(88.5, 30),
+            backgroundColor:
+                (_scale == index) ? Colors.greenAccent : Colors.white));
   }
 
   Widget resutl() {
@@ -566,7 +802,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      '$_currentHieghtValue',
+                                      '$_currentHieghtValue $_scaletxt2',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
@@ -605,7 +841,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                           CrossAxisAlignment.center,
                                       children: <Widget>[
                                         Text(
-                                          '$_currentWieightValue',
+                                          '$_currentWieightValue kgs',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily:
@@ -647,7 +883,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         Text(
-                                          _ageCon.text.toString(),
+                                          _age.toString(),
                                           style: TextStyle(
                                             fontFamily:
                                                 FitnessAppTheme.fontName,
