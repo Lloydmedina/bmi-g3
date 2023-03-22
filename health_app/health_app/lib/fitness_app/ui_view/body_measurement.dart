@@ -45,7 +45,6 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   int _scale = 0;
   String _scaletxt = '';
   String _scaletxt2 = '';
-  bool _enabled = false;
 
   bool _visible = false;
   bool _vinormal = false;
@@ -53,6 +52,14 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
   bool _viunderwieght = false;
   bool _viobese = false;
   bool _viexisive = false;
+  static const List<String> list = <String>[
+    '-Select Scale-',
+    'Meter',
+    'Feet',
+    'Inches',
+    'Centimeter'
+  ];
+  String dropdownValue = list.first;
 
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -226,89 +233,12 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Scale",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FitnessAppTheme.fontName,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16,
-                                            letterSpacing: -0.1,
-                                            color: FitnessAppTheme.darkText),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            width: 333.5,
-                                            height: 60,
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                children: <Widget>[
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  scaleSelect("Meter", 1),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  scaleSelect("Feet", 2),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  scaleSelect("Inches", 3),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  scaleSelect("Centimeter", 4),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5)),
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    Color.fromARGB(
-                                                        255, 234, 173, 245)!,
-                                                    Color.fromARGB(
-                                                        255, 93, 177, 245),
-                                                  ],
-                                                  begin: Alignment.topLeft,
-                                                  end: Alignment.bottomRight),
-                                              boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                  color: Colors.grey.shade500,
-                                                  blurRadius: 15.0,
-                                                  spreadRadius: 1.0,
-                                                  offset: Offset(4.0, 4.0),
-                                                ),
-                                                BoxShadow(
-                                                  color: Colors.white,
-                                                  blurRadius: 15.0,
-                                                  spreadRadius: 1.0,
-                                                  offset: Offset(-4.0, -4.0),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
 
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 4, bottom: 8, top: 16),
                                     child: Text(
-                                      _scale == 0
+                                      _scaletxt == '-Select Scale-'
                                           ? 'Height (Please Select Scale)'
                                           : 'Height ($_scaletxt)',
                                       textAlign: TextAlign.center,
@@ -322,37 +252,55 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                   ),
                                   // Hieght
                                   Container(
-                                      child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      TextFormField(
-                                        enabled: _enabled,
-                                        controller: _heightCon,
-                                        validator: (text) {
-                                          if (!text!.isNotEmpty) {
-                                            return "Field is empty";
-                                          }
-                                          return null;
-                                        },
-                                        decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 1,
-                                                color: Colors
-                                                    .greenAccent), //<-- SEE HERE
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 2,
+                                            color: Colors.greenAccent),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              border: Border(
+                                                  right: BorderSide(
+                                                      width: 2,
+                                                      color: Colors
+                                                          .grey.shade100))),
+                                          width: 195,
+                                          child: TextFormField(
+                                            controller: _heightCon,
+                                            validator: (text) {
+                                              if (!text!.isNotEmpty) {
+                                                return "Field is empty";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType:
+                                                TextInputType.numberWithOptions(
+                                                    decimal: true),
+                                            inputFormatters: <
+                                                TextInputFormatter>[
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp(r'^\d+\.?\d{0,2}')),
+                                              //FilteringTextInputFormatter.digitsOnly
+                                            ],
+                                            decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    width: .5,
+                                                    color: Colors
+                                                        .white), //<-- SEE HERE
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        keyboardType:
-                                            TextInputType.numberWithOptions(
-                                                decimal: true),
-                                        inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp(r'^\d+\.?\d{0,2}')),
-                                          //FilteringTextInputFormatter.digitsOnly
-                                        ],
-                                      ),
-                                    ],
-                                  )),
+                                        Container(
+                                          child: scaleSelect(),
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                   SizedBox(
                                     height: 30,
                                   ),
@@ -403,7 +351,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                         _hieght;
                                                     _currentWieightValue =
                                                         _wieght;
-                                                    if (_scale == 1) {
+                                                    if (_scaletxt == 'Meter') {
                                                       print('meters');
                                                       _scaletxt2 = 'm';
                                                       //   double aa =
@@ -447,7 +395,8 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                             'Extremely Obese';
                                                         _viexisive = true;
                                                       }
-                                                    } else if (_scale == 2) {
+                                                    } else if (_scaletxt ==
+                                                        'Feet') {
                                                       print('feet');
                                                       _scaletxt2 = 'ft';
                                                       double aaa = _hieght /
@@ -486,7 +435,8 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                             'Extremely Obese';
                                                         _viexisive = true;
                                                       }
-                                                    } else if (_scale == 3) {
+                                                    } else if (_scaletxt ==
+                                                        'Inches') {
                                                       _scaletxt2 = 'in';
                                                       double aaa = _hieght *
                                                           0.0254 as double;
@@ -524,7 +474,8 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                             'Extremely Obese';
                                                         _viexisive = true;
                                                       }
-                                                    } else {
+                                                    } else if (_scaletxt ==
+                                                        'Centimeter') {
                                                       _scaletxt2 = 'cm';
                                                       double aaa = _hieght *
                                                           0.01 as double;
@@ -562,7 +513,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                             'Extremely Obese';
                                                         _viexisive = true;
                                                       }
-                                                    }
+                                                    } else {}
                                                   });
                                                 }
                                                 FocusScope.of(context)
@@ -629,27 +580,51 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
     );
   }
 
-  Widget scaleSelect(String text, int index) {
-    return OutlinedButton(
-        onPressed: () {
-          setState(() {
-            _scale = index;
-            _scaletxt = text;
-            _enabled = true;
-          });
-        },
-        child: Text(
-          text,
-          style: TextStyle(
-              color: (_scale == index) ? Colors.amber : Colors.blue,
-              fontStyle:
-                  (_scale == index) ? FontStyle.italic : FontStyle.normal),
-        ),
-        style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.all(15),
-            minimumSize: Size(88.5, 30),
-            backgroundColor:
-                (_scale == index) ? Colors.greenAccent : Colors.white));
+  Widget scaleSelect() {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_drop_down_sharp),
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.white,
+      ),
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+          _scaletxt = value!;
+        });
+        print(_scaletxt);
+      },
+      items: list.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+
+    // return OutlinedButton(
+    //     onPressed: () {
+    //       setState(() {
+    //         _scale = index;
+    //         _scaletxt = text;
+    //       });
+    //     },
+    //     child: Text(
+    //       text,
+    //       style: TextStyle(
+    //           color: (_scale == index) ? Colors.amber : Colors.blue,
+    //           fontStyle:
+    //               (_scale == index) ? FontStyle.italic : FontStyle.normal),
+    //     ),
+    //     style: OutlinedButton.styleFrom(
+    //         padding: EdgeInsets.all(15),
+    //         minimumSize: Size(88.5, 30),
+    //         backgroundColor:
+    //             (_scale == index) ? Colors.greenAccent : Colors.white));
   }
 
   Widget resutl() {
