@@ -267,7 +267,7 @@ class _BodyMeasurementViewState extends State<BodyMeasurementView> {
                                                       width: 2,
                                                       color: Colors
                                                           .grey.shade100))),
-                                          width: 195,
+                                          width: 190,
                                           child: TextFormField(
                                             controller: _heightCon,
                                             validator: (text) {
